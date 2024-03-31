@@ -1,6 +1,5 @@
-import pytest
-import json
 import logging
+import json
 
 
 def test_setup_logging(logger):
@@ -8,6 +7,7 @@ def test_setup_logging(logger):
 
 
 def test_log_is_json(logger, caplog):
+    """Test that the log message is in Json structure"""
     with caplog.at_level(logging.INFO):
         message = "Test message"
         logger.log_info(message)
@@ -15,17 +15,20 @@ def test_log_is_json(logger, caplog):
 
 
 def test_log_info(logger, caplog):
+    """Test that we can create log message in info level"""
     caplog.set_level(logging.INFO)
     logger.log_info("Test info message")
     assert "Test info message" in caplog.text
 
 
 def test_log_error(logger, caplog):
+    """Test that we can create log message in error level"""
     logger.log_error("Test error message")
     assert "Test error message" in caplog.text
 
 
 def test_log_warning(logger, caplog):
+    """Test that we can create log message in warning level"""
     logger.log_warning("Test warning message")
     assert "Test warning message" in caplog.text
 
