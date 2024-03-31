@@ -1,5 +1,5 @@
 import pytest
-from unittest.mock import patch
+import logging
 from logpack.logger import Logger
 
 
@@ -8,6 +8,7 @@ def test_setup_logging(logger):
 
 
 def test_log_info(logger, caplog):
+    caplog.set_level(logging.INFO)
     logger.log_info("Test info message")
     assert "Test info message" in caplog.text
 
