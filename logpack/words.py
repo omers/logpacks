@@ -1,3 +1,1 @@
-sensitive_words = [
-'password', 'credit card', 'social security'
-]
+sensitive_words = ["password", "credit card", "social security"]
