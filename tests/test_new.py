@@ -23,10 +23,10 @@ def test_log_warning(logger, caplog):
     assert "Test warning message" in caplog.text
 
 
-def test_obfuscate_message(logger):
+def test_obfuscate_message(logger, caplog):
     message = "User entered password: 123456 and credit card: 1234-5678-9012-3456"
-    obfuscated_message = logger.obfuscate_message(message)
+    logger.log_info(message)
     assert (
-        obfuscated_message
-        == "User entered ********: 123456 and ***********: 1234-5678-9012-3456"
+            "User entered ********: 123456 and ***********: 1234-5678-9012-3456" 
+            in caplog.text
     )
