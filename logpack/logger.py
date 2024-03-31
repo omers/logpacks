@@ -2,6 +2,7 @@ import logging
 import re
 import sys
 
+
 class Logger:
     def __init__(self, log_file="app.log"):
         self.log_file = log_file
@@ -9,11 +10,11 @@ class Logger:
 
     def _obfuscate_message(self, message):
         sensitive_patterns = [
-            (r"\b(?!000|.+0{4})(?:\d{9}|\d{3}-\d{2}-\d{4})\b", '[REDACT]'),
-            (r"\b\d{4}-\d{4}-\d{4}-\d{4}\b", '[REDACT]'),
+            (r"\b(?!000|.+0{4})(?:\d{9}|\d{3}-\d{2}-\d{4})\b", "[REDACT]"),
+            (r"\b\d{4}-\d{4}-\d{4}-\d{4}\b", "[REDACT]"),
             (r"\b\d{2}/\d{2}/\d{4}\b", "[REDACT]"),
             (r"\b\d{4}-\d{2}-\d{2}\b", "[REDACT]"),
-            (r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b", "[REDACT]")
+            (r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b", "[REDACT]"),
         ]
 
         for pattern, replacement in sensitive_patterns:

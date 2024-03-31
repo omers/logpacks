@@ -1,11 +1,11 @@
 import pytest
 import json
 import logging
-from logpack.logger import Logger
 
 
 def test_setup_logging(logger):
     assert logger is not None
+
 
 def test_log_is_json(logger, caplog):
     with caplog.at_level(logging.INFO):
@@ -29,12 +29,14 @@ def test_log_warning(logger, caplog):
     logger.log_warning("Test warning message")
     assert "Test warning message" in caplog.text
 
+
 def test_redact_ssn(logger, caplog):
     with caplog.at_level(logging.INFO):
         message = "User entered SSN: 518-03-0001"
         logger.log_info(message)
     assert "[REDACT]" in caplog.text
     assert "518-03-0001" not in caplog.text
+
 
 def test_redact_ccn(logger, caplog):
     with caplog.at_level(logging.INFO):
@@ -43,6 +45,7 @@ def test_redact_ccn(logger, caplog):
     assert "[REDACT]" in caplog.text
     assert "1234-5678-9012-3456" not in caplog.text
 
+
 def test_redact_dob_slash(logger, caplog):
     with caplog.at_level(logging.INFO):
         message = "User Birth Date: 10/10/2001"
@@ -50,12 +53,14 @@ def test_redact_dob_slash(logger, caplog):
     assert "[REDACT]" in caplog.text
     assert "10/10/2001" not in caplog.text
 
+
 def test_redact_dob_dash(logger, caplog):
     with caplog.at_level(logging.INFO):
         message = "User Birth Date: 2001-10-10"
         logger.log_info(message)
     assert "[REDACT]" in caplog.text
     assert "2001-10-10" not in caplog.text
+
 
 def test_redact_ip_address(logger, caplog):
     with caplog.at_level(logging.INFO):
