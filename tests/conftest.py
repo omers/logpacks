@@ -1,5 +1,5 @@
 import pytest
-from logpack.logger import Logger
+from logpacks.logger import Logger
 
 
 @pytest.fixture
