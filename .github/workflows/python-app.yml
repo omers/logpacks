@@ -10,10 +10,8 @@ permissions:
   contents: read
 
 jobs:
-  Test:
-
+  CI:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v3
@@ -31,4 +29,4 @@ jobs:
     
     - name: Test with pytest
       run: |
-        pytest -vv --junitxml=report.xml --cov-report term --cov=logpack -o junit_suite_name='Logpack Tests'
+        pytest --junitxml=report.xml --cov-report term --cov=logpacks -o junit_suite_name='Logpack Tests'
