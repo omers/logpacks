@@ -1,4 +1,4 @@
-name: Logpack package
+name: Logpacks package
 
 on:
   push:
